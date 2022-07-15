@@ -1,0 +1,60 @@
+﻿@model SnapshotRequestViewModel
+
+<div class="row mx-5">
+        <div class="w-100 py-2 px-4 rounded-borders-top bg-lightgrey">
+            <h4 >Start a new snapshot</h4>
+        </div>
+        <div class="py-3 px-3 rounded-borders-bottom border-color-lightgrey">
+            <form asp-action="TakeSnapshot" >
+                <div class="row">
+                    <div class="col-12 col-md-12 col-lg-6 col-xl-6 mb-4">
+                        <p class="fw-bold">Contract</p>
+                        <label for="address" class="form-label fw-lighter">Address</label>
+                        <input asp-for="Address" name="address" id="address" class="form-control" type="text"/>
+                    </div>
+                    <div class="col-12 col-md-12 col-xl-6">
+                        <p class="fw-bold">Blocks</p>
+                        <div class="row">
+                            <div class="col-6 col-md-6 col-xl-5 mb-2">
+                                <label for="startBlock" class="form-label fw-lighter">Start at</label>
+                                <input asp-for="StartBlock" name="startBlock" class="form-control" type="number"/>
+                            </div>
+                            <div class="col-12 col-md-6 col-xl-5 mb-2">
+                                <label for="endBlock" class="form-label fw-lighter">End at</label>
+                                <input asp-for="EndBlock" name="endBlock" class="form-control" type="number"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <p id="isContract"></p>
+                        <p id="isToken"></p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button class="btn-primary" onclick="checkIfIsContractAndToken();return false;">Check contract info</button>
+                    <button class="btn-primary" type="submit">Scan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function checkIfIsContractAndToken()
+        {
+            var val = $("#address").val();
+            console.log(val);
+            $.ajax({
+            type: "GET",
+            url: "@Url.Action("CheckIfIsContractAndToken")",
+            data: {"address":val},
+            dataType: "text",
+            success: function (data) {
+               var tokenInfo = JSON.parse(data);
+               $("#isContract")[0].innerHTML = tokenInfo.isContract ? "<span class='text-success'>✔</span><span> Is a contract</span>":"<span class='text-error'>❌</span><span> Is not a contract</span>";
+               $("#isToken")[0].innerHTML = tokenInfo.isContract ? "<span class='text-success'>✔</span><span> Is a token</span>":"<span class='text-error'>❌</span><span> Is not a token</span>";
+            },
+            error: function (req, status, error) {}
+        }); 
+        }
+    
+    </script>
