@@ -201,7 +201,7 @@
         success: function (data) {
             var tokenInfo = JSON.parse(data);
             $("#isContract")[0].innerHTML = tokenInfo.isContract ? "<span class='text-success'>✔</span><span> Is a contract</span>":"<span class='text-error'>❌</span><span> Is not a contract</span>";
-            $("#isToken")[0].innerHTML = tokenInfo.isContract ? "<span class='text-success'>✔</span><span> Is a token</span>":"<span class='text-error'>❌</span><span> Is not a token</span>";
+            $("#isToken")[0].innerHTML = tokenInfo.isToken ? "<span class='text-success'>✔</span><span> Is a token</span>":"<span class='text-error'>❌</span><span> Is not a token</span>";
         },
         error: function (req, status, error) {}
     }); 
