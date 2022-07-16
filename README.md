@@ -21,3 +21,4 @@ To scan
 If you want to start from a specific step, pick the right tag:
 
 * **InitialRelease** - If you are following the article from the start, this is the commit you want to start from. 
+* **ContractTokenCheck** - If you are skipping the contract and token check
