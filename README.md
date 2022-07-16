@@ -17,8 +17,35 @@ To scan
 ![image](https://img.shields.io/badge/Solidity-e6e6e6?style=for-the-badge&logo=solidity&logoColor=black)
 
 
+## Releases
 
 If you want to start from a specific step, pick the right tag:
 
 * **InitialRelease** - If you are following the article from the start, this is the commit you want to start from. 
 * **ContractTokenCheck** - If you are skipping the contract and token check
+
+## Additional content
+
+**BSC RPC URL**
+
+https://bsc-dataseed.binance.org/
+
+**Total Supply ABI**
+
+```json
+[
+    {
+        "inputs": [], 
+        "name": "totalSupply", 
+        "outputs": [ 
+            { 
+                "internalType": "uint256", 
+                "name": "", 
+                "type": "uint256" 
+            } 
+        ],
+        "stateMutability": "view",
+        "type": "function" 
+    }
+]
+```
