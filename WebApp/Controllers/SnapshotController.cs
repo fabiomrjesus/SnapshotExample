@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SnapshotEngine.Utils;
 using WebApp.Models;
 
 namespace WebApp.Controllers
 {
     public class SnapshotController : Controller
     {
-
-        public SnapshotController()
+        private readonly ContractUtils _contractUtils;
+        public SnapshotController(ContractUtils contractUtils)
         {
+            _contractUtils = contractUtils; 
         }
 
         public async Task<IActionResult> Index()
@@ -78,9 +80,15 @@ namespace WebApp.Controllers
             return true;
         }
 
-        public ContractBasicInfo CheckIfIsContractAndToken(string address)
+        public async Task<ContractBasicInfo> CheckIfIsContractAndToken(string address)
         {
-            return new ContractBasicInfo{ IsContract = true, IsToken= true};
+            var isToken = false;
+            var isContract = await _contractUtils.IsContractAddress(address);
+            if (isContract)
+            {
+                isToken = await _contractUtils.IsTokenAddress(address);
+            }
+            return new ContractBasicInfo{ IsContract = isContract, IsToken= isToken};
         }
     }
 }

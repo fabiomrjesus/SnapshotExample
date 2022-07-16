@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataManagement\DataManagement.csproj" />
+    <ProjectReference Include="..\SnapshotEngine\SnapshotEngine.csproj" />
   </ItemGroup>
 
 </Project>

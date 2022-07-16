@@ -1,11 +1,14 @@
 using DataManagement;
-using WebApp.Controllers;
+using SnapshotEngine.Models;
+using SnapshotEngine.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.Configure<DatabaseOptions>(builder.Configuration.GetSection("DatabaseSettings"));
+builder.Services.Configure<BlockchainConfiguration>(builder.Configuration.GetSection("BlockchainConfiguration"));
+builder.Services.AddScoped<ContractUtils>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
